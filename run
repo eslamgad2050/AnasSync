@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Usage instructions
+usage() {
+  echo "Usage: $0 [clean|debug|release|args...]"
+  echo "  clean       - Clean the build directory"
+  echo "  debug       - Run the program with gdb in Debug mode"
+  echo "  release     - Run the program in Release mode"
+  echo "  args...     - Run the program with arguments"
+  exit 1
+}
+
+# Set build type and directory
+BUILD_TYPE="release"
+BUILD_DIR="build/release"
+
+if [ "$1" = "debug" ]; then
+  BUILD_TYPE="debug"
+  BUILD_DIR="build/debug"
+elif [ "$1" = "clean" ]; then
+  echo "Cleaning build directories..."
+  rm -rf build/debug build/release
+  exit 0
+fi
+
+# Create build directory if not exists
+mkdir -p "$BUILD_DIR"
+cd "$BUILD_DIR" || exit 1
+
+# Configure and build
+cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE^} ../..
+make -j4 || exit 1
+
+
+# Run the program or perform analysis
+if [ "$1" = "debug" ]; then
+  gdb ./main
+else
+  echo "---------------------------------------------"
+  ./main "${@:1}"
+  echo
+  echo "---------------------------------------------"
+fi
