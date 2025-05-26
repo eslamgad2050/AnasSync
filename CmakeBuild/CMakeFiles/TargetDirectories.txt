@@ -1,3 +1,0 @@
-/home/eslam/Desktop/AnasSync/CmakeBuild/CMakeFiles/main.dir
-/home/eslam/Desktop/AnasSync/CmakeBuild/CMakeFiles/edit_cache.dir
-/home/eslam/Desktop/AnasSync/CmakeBuild/CMakeFiles/rebuild_cache.dir
