@@ -14,6 +14,11 @@ usage() {
 BUILD_TYPE="release"
 BUILD_DIR="build/release"
 
+# if compile_commands.json is not a file
+if [ ! -f "compile_commands.json" ]; then
+  ln -s build/release/compile_commands.json .
+fi
+
 if [ "$1" = "debug" ]; then
   BUILD_TYPE="debug"
   BUILD_DIR="build/debug"
