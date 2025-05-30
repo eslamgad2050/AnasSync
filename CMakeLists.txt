@@ -30,6 +30,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Gather all source files from ./src
 file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/src/*/*.cpp")
 
 # Add the main.cpp file to the list of sources
 list(APPEND SOURCES "${CMAKE_SOURCE_DIR}/main.cpp")
