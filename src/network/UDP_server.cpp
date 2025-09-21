@@ -5,7 +5,6 @@
 #include <functional>
 #include <iostream>
 #include <network/netwrokManager.h>
-
 UDP_server::UDP_server(asio::io_context &context)
     : socket_(context, udp::endpoint(udp::v4(), 13)) {
   start_receive();
