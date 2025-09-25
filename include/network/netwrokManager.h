@@ -1,6 +1,7 @@
 #include "asio/io_context.hpp"
 #include "asio/ip/tcp.hpp"
 #include "asio/ip/udp.hpp"
+#include "asio/steady_timer.hpp"
 #include <array>
 #include <asio.hpp>
 #include <memory>
@@ -20,6 +21,8 @@ public:
   UDP_server(asio::io_context &context);
   void start_server();
   void receive_response();
+  void scan(asio::io_context &context);
+  void start_broadcasting(asio::io_context *context, asio::steady_timer* );
 
 private:
   udp::socket socket_;
