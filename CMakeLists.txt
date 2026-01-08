@@ -19,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Debug flags
-set(CMAKE_CXX_FLAGS_DEBUG "-ggdb -O0 -Wall -Wextra -Wpedantic -Werror -Wno-unused-variable")
+set(CMAKE_CXX_FLAGS_DEBUG "-ggdb -O0 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Werror -Wno-unused-variable")
 
 # Release flags
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -flto")
@@ -27,6 +27,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2 -flto")
 
 # Include header files
 include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/include/files)
+include_directories(${CMAKE_SOURCE_DIR}/include/files/third_party)
 
 # Gather all source files from ./src
 file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
@@ -43,6 +45,10 @@ set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} Threads::Threads)
+
+#xxHash
+# find_package(xxHash REQUIRED)
+# target_link_libraries(${PROJECT_NAME} xxHash::xxhash)
 
 # Print current build mode
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")

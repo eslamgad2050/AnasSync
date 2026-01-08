@@ -36,7 +36,6 @@ cd "$BUILD_DIR" || exit 1
 cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE^} ../..
 make -j4 || exit 1
 
-
 # Run the program or perform analysis
 if [ "$1" = "debug" ]; then
   gdb ./main
