@@ -3,6 +3,7 @@
 // #include <thread>
 #include <asio.hpp>
 #include <files/Hasher.hpp>
+#include <files/Scanner.hpp>
 #include <files/filesystem_utils.hpp>
 #include <files/third_party/portable-file-dialogs.h>
 #include <iostream>
@@ -10,10 +11,12 @@
 #include <string>
 int main() {
   try {
-    auto selection = select_file();
+    auto selection = select_file_or_dir();
     if (!selection.empty()) {
-      std::cout << "User selected file " << selection[0] << "\n";
+      std::cout << "User selected file " << selection << "\n";
       std::cout << "------------------\n";
+      Scanner scaner;
+      scaner.scan(selection);
       Hasher hasher;
       std::cout << "the file hash is" << hasher.hash_file(selection);
     } else {
